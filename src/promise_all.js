@@ -1,6 +1,6 @@
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms, "world"));
 
-wait(2000)
+wait(12000)
   .then((res) => {
     console.log(res);
   })
@@ -12,11 +12,13 @@ Promise.all([Promise.resolve("hello"), wait()])
 
 function myPromiseAll(promises) {
   let result = [];
+  let count = 0;
   return new Promise((resolve, reject) => {
-    promises.forEach((p, index) => {
+    promises.forEach((p) => {
       p.then((res) => {
+        count++;
         result.push(res);
-        if (index === promises.length - 1) {
+        if (count === promises.length) {
           resolve(result);
         }
       }).catch((err) => {
