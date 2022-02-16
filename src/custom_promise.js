@@ -1,4 +1,4 @@
-class SimplePromise {
+export class SimplePromise {
   constructor(executorFunc) {
     this.promiseChain = [];
     this.handleError = () => {};
