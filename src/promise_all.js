@@ -1,34 +1,35 @@
-const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms, "world"));
-
-wait(12000)
-  .then((res) => {
-    console.log(res);
-  })
-  .catch((err) => console.log(err));
-
-Promise.all([Promise.resolve("hello"), wait()])
-  .then((res) => console.log(res))
-  .catch((err) => console.log(err));
-
-function myPromiseAll(promises) {
+//https://bigfrontend.dev/problem/implement-Promise-all
+/**
+ * @param {Array<any>} promises - notice input might have non-Promises
+ * @return {Promise<any[]>}
+ */
+ function myPromiseAll(promises) {
+  // your code here
   let result = [];
   let count = 0;
+  const _promises = promises.map((promise) => promise instanceof Promise ? promise : Promise.resolve(promise));
+
+  if(_promises.length === 0) {
+    return Promise.resolve([]);
+  }
+
   return new Promise((resolve, reject) => {
-    promises.forEach((p) => {
-      p.then((res) => {
-        count++;
+    _promises.forEach((promise) => {
+      promise.then((res) => {
         result.push(res);
-        if (count === promises.length) {
+        count++;
+        if(count === _promises.length) {
           resolve(result);
         }
       }).catch((err) => {
-        console.log(err);
-        reject();
-      });
-    });
-  });
+        reject(err);
+      })
+    })
+  })
 }
 
-myPromiseAll([Promise.resolve("hello"), wait()]).then((val) =>
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms, "world"));
+
+myPromiseAll([Promise.resolve("hello"), 1, 2, wait(1000)]).then((val) =>
   console.log(val)
 );
