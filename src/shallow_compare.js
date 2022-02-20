@@ -1,8 +1,8 @@
-function isObject(obj) {
+export function isObject(obj) {
   return typeof obj === "object" && obj !== null;
 }
 
-function shallowEqual(x, y) {
+export function shallowEqual(x, y) {
   //Object.is() determines if x and y are same values/object/array (true if equal else false)
   //basically this would help us to evaluate primitives equality
   if (Object.is(x, y)) {
@@ -36,26 +36,12 @@ function shallowEqual(x, y) {
       return false;
     }
 
-    propertiesX.forEach((property) => {
-      if (x[property] !== y[property]) {
+    for (let i = 0; i < propertiesX.length; i++) {
+      if (x[propertiesX[i]] !== y[propertiesX[i]]) {
         return false;
       }
-    });
+    }
   }
 
   return true;
 }
-
-let props = {
-  status: "Incomplete",
-  campaign: "Winter Collection",
-  concept: ""
-};
-
-let nextProps = {
-  status: "Incomplete",
-  campaign: "Winter Collection",
-  concept: "Go"
-};
-
-console.log("Shallow compare:--", shallowEqual(props, nextProps));

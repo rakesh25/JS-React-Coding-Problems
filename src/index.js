@@ -6,3 +6,4 @@ import "./compose_and_pipe";
 import "./promise_all";
 import "./custom_promise";
 import "./shallow_compare";
+import "./deep_compare";
