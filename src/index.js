@@ -7,3 +7,4 @@ import "./promise_all";
 import "./custom_promise";
 import "./shallow_compare";
 import "./deep_compare";
+import "./cancel_a_promise";
