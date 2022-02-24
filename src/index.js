@@ -4,6 +4,7 @@ import "./intersection_unsorted_array";
 import "./memoize_a_function";
 import "./compose_and_pipe";
 import "./promise_all";
+import "./promise_race";
 import "./custom_promise";
 import "./shallow_compare";
 import "./deep_compare";
