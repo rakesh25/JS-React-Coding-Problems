@@ -15,11 +15,11 @@ export function shallowEqual(x, y) {
       return false;
     }
 
-    x.forEach((item, i) => {
-      if (x[i] !== y[i]) {
+    for(let i=0; i<x.length; i++) {
+      if(x[i] !== y[i]) {
         return false;
       }
-    });
+    }
   }
 
   //if both are objects/arrays, then iterate over keys and compare values

@@ -15,11 +15,16 @@ function memo(func, resolver) {
     };
 }
   
-const func = (arg1, arg2) => {
-    return arg1 + arg2;
+const func = (...args) => {
+    return args.reduce((acc, cur) => acc + cur);
 };
   
 const memoed = memo(func, () => "samekey");
-  
-console.log(memoed(1, 2));
-console.log(memoed(1, 2));
+
+console.time("Measure First time--");
+console.log(memoed(1,2,3));
+console.timeEnd("Measure First time--");
+
+console.time("Measure Second time--");
+console.log(memoed(1,2,3));
+console.timeEnd("Measure Second time--");
