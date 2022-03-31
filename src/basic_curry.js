@@ -5,7 +5,7 @@ function curry(fn){
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters
     return function curried(...args) {
         //fn.length is basically count of how many parameters function fn is declared to accept
-        console.log("Type of...", typeof args, Array.isArray(args));
+        console.log("Type of...", typeof args, Array.isArray(args), args);
         if(args.length >= fn.length) {
             return fn.call(this, ...args);
         }
